@@ -1,0 +1,7 @@
+<% form.fields_for :settings, form.object.settings do |settings_fields| %>
+  <%= settings_fields.check_box :activate_filters, label: "Activate filters" %>
+  <%= settings_fields.select :linked_component_id,
+                             options_for_proposals_components,
+                             { include_blank: false },
+                             { multiple: true, class: "chosen-select", label: "Linked components" }  %>
+<% end %>

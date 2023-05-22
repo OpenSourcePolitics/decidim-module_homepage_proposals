@@ -28,6 +28,12 @@ module Decidim
         Decidim.content_blocks.register(:homepage, :proposals_slider) do |content_block|
           content_block.cell = "decidim/homepage_proposals/content_blocks/proposals_slider"
           content_block.public_name_key = "decidim.homepage_proposals.content_blocks.proposals_slider_cell.rb.name"
+          content_block.settings_form_cell = "decidim/homepage_proposals/content_blocks/proposals_slider_settings_form"
+          content_block.settings do |settings|
+            settings.attribute :activate_filters, type: :boolean, default: false
+            settings.attribute :linked_component_id, type: :array
+          end
+          content_block.default!
         end
       end
     end
