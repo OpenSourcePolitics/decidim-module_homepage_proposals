@@ -38,10 +38,17 @@ describe "Admin manages proposals slider content blocks", type: :system do
           expect(page).not_to have_css("option[value='#{proposals_component4.id}']")
         end
 
+        within "#content_block_settings_default_linked_component" do
+          expect(page).to have_selector("option[value='#{proposals_component1.id}']")
+          find("option[value='#{proposals_component3.id}']").click
+          expect(page).not_to have_css("option[value='#{proposals_component2.id}']")
+        end
+
         click_button "Update"
 
         expect(content_block.reload.settings.activate_filters).to eq(true)
-        expect(content_block.reload.settings.linked_component_id).to eq(["", proposals_component1.id.to_s, proposals_component3.id.to_s])
+        expect(content_block.reload.settings.linked_components_id).to eq(["", proposals_component1.id.to_s, proposals_component3.id.to_s])
+        expect(content_block.reload.settings.default_linked_component).to eq(proposals_component3.id.to_i)
 
         visit decidim.root_path
 

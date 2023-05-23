@@ -31,7 +31,8 @@ module Decidim
           content_block.settings_form_cell = "decidim/homepage_proposals/content_blocks/proposals_slider_settings_form"
           content_block.settings do |settings|
             settings.attribute :activate_filters, type: :boolean, default: false
-            settings.attribute :linked_component_id, type: :array
+            settings.attribute :linked_components_id, type: :array
+            settings.attribute :default_linked_component, type: :integer
           end
           content_block.default!
         end
