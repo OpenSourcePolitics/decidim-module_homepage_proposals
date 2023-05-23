@@ -44,6 +44,7 @@ describe "Admin manages proposals slider content blocks", type: :system do
         expect(content_block.reload.settings.linked_component_id).to eq(["", proposals_component1.id.to_s, proposals_component3.id.to_s])
 
         visit decidim.root_path
+
         expect(page).to have_content("EXPLORE PROPOSALS")
       end
     end
