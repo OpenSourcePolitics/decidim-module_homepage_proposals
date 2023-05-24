@@ -14,8 +14,9 @@ module Decidim
                       else
                         Decidim::Proposals::Proposal.where(component: content_block_settings.default_linked_component)
                       end
-          proposals = proposals.where(category: category) if category.present?
+
           proposals = proposals.where(scope: scope) if scope.present?
+          proposals = proposals.select { |p| p.category == category } if category.present?
           proposals.sample(12)
         end
 
