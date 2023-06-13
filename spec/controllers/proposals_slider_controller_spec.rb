@@ -26,7 +26,7 @@ module Decidim
         it "renders the organization url" do
           post "refresh_proposals", params: { filter: { component_id: "", category_id: "", scope_id: "" } }
 
-          expect(response.body).to eq("/")
+          expect(JSON.parse(response.body)).to eq({ "url" => "/" })
         end
       end
 

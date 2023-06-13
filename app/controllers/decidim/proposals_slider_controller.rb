@@ -62,9 +62,13 @@ module Decidim
     end
 
     def component_url
-      return "/" if params.dig(:filter, :component_id).blank?
+      return { url: "/" } if params.dig(:filter, :component_id).blank?
 
-      { url: main_component_path(Decidim::Component.find(params.dig(:filter, :component_id))) }
+      begin
+        { url: main_component_path(Decidim::Component.find(params.dig(:filter, :component_id))) }
+      rescue ActiveRecord::RecordNotFound
+        { url: "/" }
+      end
     end
   end
 end
