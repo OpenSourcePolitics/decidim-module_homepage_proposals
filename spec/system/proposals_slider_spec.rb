@@ -58,6 +58,16 @@ describe "Homepage proposals slider", type: :system, js: true do
         let!(:proposals_31) { create_list(:proposal, 1, component: other_component, category: category3, scope: scope1, skip_injection: true) }
         let!(:proposals_32) { create_list(:proposal, 1, component: other_component, category: category3, scope: scope2, skip_injection: true) }
 
+        context "when filtering to render nothing" do
+          it "displays the not found proposals with the component link" do
+            visit decidim.root_path
+            select translated_attribute(category1.name), from: "filter[category_id]"
+
+            expect(page).to have_content("No proposals found")
+            expect(page).to have_link("Visit proposals", href: main_component_path(component))
+          end
+        end
+
         context "when filtering by another component" do
           it "displays only the proposals of this component" do
             visit decidim.root_path

@@ -87,8 +87,8 @@ export default class Manager {
     // Creates Glide Items
     // @return void
     generateGlides(res) {
-        if (res.length <= 0) {
-            this.createProposalsNotFound();
+        if (res.url) {
+            this.createProposalsNotFound(res.url);
             return;
         }
 
@@ -99,8 +99,8 @@ export default class Manager {
     // - A Not Found GlideItem
     // - 3 placeholders
     // @return void
-    createProposalsNotFound() {
-        const notFoundGlide = new NotFound()
+    createProposalsNotFound(url) {
+        const notFoundGlide = new NotFound(url)
         this.$proposalsGlideItems.append(notFoundGlide.render())
         $(".glide__bullets > .glide__bullet:last").before(notFoundGlide.bullet(0));
 

@@ -5,6 +5,7 @@ module Decidim
     include Decidim::FilterResource
     include Decidim::TranslatableAttributes
     include Decidim::Core::Engine.routes.url_helpers
+    include Decidim::ComponentPathHelper
 
     def refresh_proposals
       render json: build_proposals_api
@@ -13,6 +14,8 @@ module Decidim
     private
 
     def build_proposals_api
+      return component_url unless glanced_proposals.any?
+
       glanced_proposals.flat_map do |proposal|
         {
           id: proposal.id,
@@ -56,6 +59,12 @@ module Decidim
       return view_context.image_pack_url("media/images/slider_proposal_image.jpeg") unless proposal.attachments.select(&:image?).any?
 
       proposal.attachments.select(&:image?).first&.url
+    end
+
+    def component_url
+      return "/" if params.dig(:filter, :component_id).blank?
+
+      { url: main_component_path(Decidim::Component.find(params.dig(:filter, :component_id))) }
     end
   end
 end

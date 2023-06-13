@@ -19,6 +19,8 @@ And then execute:
 
 ```bash
 bundle
+bundle exec rake decidim_module_homepage_proposals:webpacker:install
+bundle exec rake assets:precompile
 ```
 
 ## Contributing

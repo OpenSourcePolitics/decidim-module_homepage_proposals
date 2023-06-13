@@ -1,5 +1,7 @@
 export default class GlideItem {
-    constructor() {}
+    constructor(url) {
+        this.url = url;
+    }
 
     placeholder() {
         return `<div class="column glide__slide"></div>`
