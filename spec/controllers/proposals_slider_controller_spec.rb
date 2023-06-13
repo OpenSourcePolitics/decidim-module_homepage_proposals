@@ -23,10 +23,10 @@ module Decidim
 
     describe "POST refresh_proposals" do
       context "when there are no proposals component" do
-        it "renders nothing" do
+        it "renders the organization url" do
           post "refresh_proposals", params: { filter: { component_id: "", category_id: "", scope_id: "" } }
 
-          expect(response.body).to eq("[]")
+          expect(response.body).to eq("/")
         end
       end
 
