@@ -23,12 +23,6 @@ task :development_app do
   seed_slider("development_app")
 end
 
-def seed_db(path)
-  Dir.chdir(path) do
-    system("bundle exec rake db:seed")
-  end
-end
-
 def seed_slider(path)
   Dir.chdir(path) do
     system("bundle exec rake decidim:homepage_proposals:seed")
