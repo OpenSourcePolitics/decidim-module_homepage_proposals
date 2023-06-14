@@ -34,7 +34,6 @@ module Decidim
             settings.attribute :linked_components_id, type: :array
             settings.attribute :default_linked_component, type: :integer
           end
-          content_block.default!
         end
       end
     end
