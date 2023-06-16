@@ -90,12 +90,11 @@ jobs:
       - name: Run precompile if needed
         run: |
           if [[ -d "app/views" ]] || [[ -d "spec/mailers" ]] || [[ -d "spec/system" ]]; then
-            cd "spec/decidim_dummy_app"
+            cd "./spec/decidim_dummy_app"
             bundle exec rails assets:precompile
           else
             echo "No need to precompile assets since system folder is empty"
           fi
-        working-directory: ./spec/decidim_dummy_app/
       - run: bundle exec rspec
         name: RSpec
         working-directory: ${{ env.DECIDIM_MODULE }}
