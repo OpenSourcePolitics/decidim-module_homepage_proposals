@@ -41,7 +41,7 @@
   <%# Small button to clear filters %>
   <div class="columns mediumlarge-12 large-3">
     <div class="clear-filters">
-      <%= link_to t("decidim.homepage_proposals.proposal_at_a_glance.filters.clear_filters"), decidim_participatory_processes_path, class: "button--clear-filters" %>
+      <%= link_to t("decidim.homepage_proposals.proposal_at_a_glance.filters.clear_filters"), decidim_participatory_processes_path(anchor: "proposals_slider"), class: "button--clear-filters" %>
     </div>
   </div>
 <% end %>
