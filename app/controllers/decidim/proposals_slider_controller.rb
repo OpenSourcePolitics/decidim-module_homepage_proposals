@@ -6,6 +6,7 @@ module Decidim
     include Decidim::TranslatableAttributes
     include Decidim::Core::Engine.routes.url_helpers
     include Decidim::ComponentPathHelper
+    include Decidim::SanitizeHelper
 
     def refresh_proposals
       render json: build_proposals_api
@@ -20,7 +21,7 @@ module Decidim
         {
           id: proposal.id,
           title: translated_attribute(proposal.title).truncate(40),
-          body: translated_attribute(proposal.body).truncate(150),
+          body: decidim_sanitize_editor(translated_attribute(proposal.body), strip_tags: true).truncate(150),
           url: proposal_path(proposal),
           image: image_for(proposal),
           state: proposal.state,

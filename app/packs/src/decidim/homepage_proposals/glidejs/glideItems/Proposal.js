@@ -47,7 +47,7 @@ export default class Proposal extends GlideItem {
         
         <div class="card__text--paragraph padding-top-1">
             ${this.getTagsTemplate()}
-            <p>${this.body}</p>
+            ${this.body}
         </div>
         <a href="${this.url}">
             <div class="card__button align-bottom padding-top-1">
