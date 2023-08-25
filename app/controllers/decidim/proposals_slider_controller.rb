@@ -23,7 +23,9 @@ module Decidim
           body: translated_attribute(proposal.body).truncate(150),
           url: proposal_path(proposal),
           image: image_for(proposal),
-          state: proposal.state
+          state: proposal.state,
+          category: proposal.category ? cell("decidim/tags", proposal).render(:category).strip.html_safe : '',
+          scope: proposal.scope ? cell("decidim/tags", proposal).render(:scope).strip.html_safe : ''
         }
       end
     end

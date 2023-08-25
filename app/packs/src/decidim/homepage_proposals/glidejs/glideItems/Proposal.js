@@ -9,6 +9,8 @@ export default class Proposal extends GlideItem {
         this.url = obj.url;
         this.state = obj.state || 'not answered' ;
         this.color = this.colorFromState(this.state);
+        this.scope = obj.scope;
+        this.category = obj.category;
     }
 
     colorFromState(state) {
@@ -24,6 +26,13 @@ export default class Proposal extends GlideItem {
         }
     }
 
+    getTagsTemplate() {
+        return `<ul class="tags tags--proposal">
+    ${this.category}
+    ${this.scope}
+</ul>`
+    }
+
     render() {
         return `<div class="column glide__slide">
 <div class="card card--proposal card--stack">
@@ -33,9 +42,11 @@ export default class Proposal extends GlideItem {
 </div>
     </a>
     <div class="card--process__small text-center padding-1">
-            <span class="${this.color} card__text--status status_slider"> ${this.state.charAt(0).toUpperCase() + this.state.slice(1)} </span>
+        <span class="${this.color} card__text--status status_slider"> ${this.state.charAt(0).toUpperCase() + this.state.slice(1)} </span>
         <a href="${this.url}"><h3 class="proposal-glance card__title">${this.title}</h3></a>
+        
         <div class="card__text--paragraph padding-top-1">
+            ${this.getTagsTemplate()}
             <p>${this.body}</p>
         </div>
         <a href="${this.url}">
