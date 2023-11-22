@@ -1,5 +1,13 @@
 @import "@glidejs/glide/src/assets/sass/glide.core";
 
+p.columns {
+  margin-bottom: 0;
+
+  @include breakpoint(medium) {
+    margin-bottom: 1rem;
+    line-height: 2.25rem;
+  }
+}
 .text-underline {
   text-decoration: underline;
 }
